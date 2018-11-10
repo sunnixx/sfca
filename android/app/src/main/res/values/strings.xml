@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">schoolfeestracker</string>
+    <string name="fb_app_id">252228258979695</string>
+    <string name="ak_client_token">009055f193600df626e12639f270ca4a</string>
 </resources>
