@@ -9,20 +9,7 @@ router.get('/test/login',(req,res,next) => {
 })
 
 router.post('/api/login',(req,res,next) => {
-    let email = req.body.email;
-    let password = req.body.password;
-
-    // console.log(req.body);
-    User.findOne({email},(err,user) => {
-        if(err) return next(err);
-        if(user === null) {
-            res.json({err: 'Email not found'});
-        }else if(user.comparePassword(req.body.password) === false) {
-            res.json({err: 'Password incorrect'});
-        } else {
-            res.json(user);
-        }
-    })
+    
 });
 
 router.post('/api/signup', (req, res, next) => {

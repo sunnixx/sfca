@@ -6,17 +6,18 @@ import { createStackNavigator, DrawerNavigator, DrawerItems } from 'react-naviga
 //Screens
 import LoginScreen from './Screens/LoginScreen';
 import DashboardScreen from './Screens/DashboardScreen';
+import RegisterScreen from './Screens/RegisterScreen';
 
 const DrawerStack = DrawerNavigator({
-    Dashboard: { screen: DashboardScreen }
+  Dashboard: { screen: DashboardScreen }
 })
 
 const DrawerNavigation = createStackNavigator({
-    DrawerStack: {screen: DrawerStack}
-  },{
+  DrawerStack: { screen: DrawerStack }
+}, {
     headerMode: 'float',
-    navigationOptions: ({navigation}) => ({
-      headerLeft: <TouchableOpacity style={{padding: 10}} onPress={() => navigation.toggleDrawer()}><Icon name='menu' style={{color: '#fafafa'}} /></TouchableOpacity>,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <TouchableOpacity style={{ padding: 10 }} onPress={() => navigation.toggleDrawer()}><Icon name='menu' style={{ color: '#fafafa' }} /></TouchableOpacity>,
       headerStyle: {
         backgroundColor: '#9b59b6'
       }
@@ -24,26 +25,27 @@ const DrawerNavigation = createStackNavigator({
   });
 
 const LoginStack = createStackNavigator({
-    Login: { screen: LoginScreen }
+  Register: { screen: RegisterScreen },
+  Login: { screen: LoginScreen },
 })
 
 const PrimaryNav = createStackNavigator({
-    LoginStack: {screen: LoginStack},  
-    DrawerStack: {screen: DrawerNavigation}
-  },{
+  LoginStack: { screen: LoginStack },
+  DrawerStack: { screen: DrawerNavigation }
+}, {
     headerMode: 'none',
     title: 'Main',
     initialRouteName: 'LoginStack'
   });
 
 class App extends Component {
-   render() {
-       return(
-           <Root>
-               <PrimaryNav />
-           </Root>
-       )
-   }
+  render() {
+    return (
+      <Root>
+        <PrimaryNav />
+      </Root>
+    )
+  }
 }
 
 export default App;
