@@ -8,9 +8,20 @@ router.get('/test/login',(req,res,next) => {
     res.sendFile(__dirname.split('/Routes')[0] + '/test/pages/login.html');
 })
 
-router.post('/api/login',(req,res,next) => {
-    
-});
+router.post('/api/addstudents',(req,res,next) => {
+    let fees = new Fees();
+
+    fees.firstName = req.body.fname;
+    fees.lastName = req.body.lname;
+    fees.grade = req.body.grade;
+
+    fees.save((err) => {
+        if(err) return next(err);
+
+        return res.json({msg: true})
+    })
+
+})
 
 router.post('/api/signup', (req, res, next) => {
     let user = new User();

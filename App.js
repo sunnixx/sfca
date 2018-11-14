@@ -27,15 +27,17 @@ const DrawerNavigation = createStackNavigator({
 const LoginStack = createStackNavigator({
   Register: { screen: RegisterScreen },
   Login: { screen: LoginScreen },
+},{
+  initialRouteName: 'Login',
+  headerMode: 'none'
 })
 
 const PrimaryNav = createStackNavigator({
   LoginStack: { screen: LoginStack },
   DrawerStack: { screen: DrawerNavigation }
 }, {
-    headerMode: 'none',
-    title: 'Main',
-    initialRouteName: 'LoginStack'
+    initialRouteName: 'LoginStack',
+    headerMode: 'none'
   });
 
 class App extends Component {
@@ -43,6 +45,7 @@ class App extends Component {
     return (
       <Root>
         <PrimaryNav />
+        {/* <LoginStack /> */}
       </Root>
     )
   }

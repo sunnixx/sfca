@@ -7,7 +7,7 @@ class LoginScreen extends Component {
 
   constructor(props) {
     super(props);
-
+    
     this.handleSMS = this.handleSMS.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.checkIfUserIsLogged = this.checkIfUserIsLogged.bind(this);
@@ -15,7 +15,7 @@ class LoginScreen extends Component {
     RNAccountKit.configure({
       responseType: 'code',
       defaultCountry: 'PK',
-      initialEmail: 'johndoe@example.com',
+      initialEmail: 'sumair.hamza@gmail.com',
       initialPhoneNumber: '+923'
     });
   }
@@ -31,7 +31,14 @@ class LoginScreen extends Component {
           //Do nothing  
         } else {
           // console.log("Load dashboard")
-          this.props.navigation.navigate('DrawerStack');
+          AsyncStorage.getItem('firstTime')
+            .then(response => {
+              if (response !== 'true' && response !== null) {
+                this.props.navigation.navigate('DrawerStack');
+              } else {
+                this.props.navigation.navigate('Register');
+              }
+            }).catch(err => { console.error(err) })
         }
       })
   }
@@ -45,7 +52,15 @@ class LoginScreen extends Component {
           AsyncStorage.setItem('token', JSON.stringify(token))
             .then(() => {
               // console.log("Load Dashboard");
-              this.props.navigation.navigate('DrawerStack');
+              AsyncStorage.getItem('firstTime')
+                .then(response => {
+                  console.log(response);
+                  if (response !== 'true' && response !== null) {
+                    this.props.navigation.navigate('DrawerStack');
+                  } else {
+                    this.props.navigation.navigate('Register');
+                  }
+                }).catch(err => { console.error(err) })
             })
         }
       })
@@ -60,8 +75,14 @@ class LoginScreen extends Component {
           AsyncStorage.setItem('token', token)
             .then(() => {
               // console.log("Load Dashboard");
-              this.props.navigation.navigate('DrawerStack');
-
+              AsyncStorage.getItem('firstTime')
+                .then(response => {
+                  if (response !== 'true' && response !== null) {
+                    this.props.navigation.navigate('DrawerStack');
+                  } else {
+                    this.props.navigation.navigate('Register');
+                  }
+                }).catch(err => { console.error(err) })
             })
         }
       })

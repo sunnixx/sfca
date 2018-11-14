@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 const User = require('./User');
 
 const FeesSchema = new Schema({
-    uid: {type:String},
+    // uid: {type:String},
     firstName: {type:String},
     lastName: {type:String},
-    yearlyFees: {type:Number},
-    feesPaid: {type:Number},
+    yearlyFees: {type:Number, default: 0},
+    feesPaid: {type:Number, default: 0},
     grade: {type:String},
-    monthsPaid: {type:Array} 
+    monthsPaid: {type:Array, default: []} 
 });
 
 
