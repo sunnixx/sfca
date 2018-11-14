@@ -20,6 +20,24 @@ const api = {}
 //     })
 // }
 
+api.addParent = async function(name,email,title,cb) {
+    await fetch(`${shared.url}/api/signup`,{
+        method: 'POST',
+        headers: {
+            'content-type' : 'application/json'
+        },
+        body: JSON.stringify({name,email,title})
+    }).then(response => {
+        response.json().then(message => {
+            if(message.msg === true) {
+                return cb('Information Added, Thank You!');
+            } else {
+                return cb('Something went wrong! Try again later')
+            }
+        })
+    })
+}
+
 api.addStudents = async function(fname, lname, grade,cb) {
     await fetch(`${shared.url}/api/addstudents`,{
         method: 'POST',

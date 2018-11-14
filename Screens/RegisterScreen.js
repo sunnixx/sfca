@@ -11,6 +11,7 @@ class RegisterScreen extends Component {
         this.firstName = '';
         this.lastName = '';
         this.grade = '';
+        this.isStudentAdded = false;
 
         this.textInput01 = React.createRef();
         this.textInput02 = React.createRef();
@@ -30,14 +31,23 @@ class RegisterScreen extends Component {
         this.textInput01.current._root.clear();
         this.textInput02.current._root.clear();
         this.textInput03.current._root.clear();
-
-        api.addStudents(this.firstName, this.lastName, this.grade,(message) => {
-            alert(message);
-        })
+        
+        if(this.firstName !== '' && this.lastName !== '' && this.grade !== '') {
+            api.addStudents(this.firstName, this.lastName, this.grade,(message) => {
+                this.isStudentAdded = true;
+                alert(message);
+            })
+        } else {
+            alert('No fields should be empty');
+        }
     }
 
     finishAddingStudents() {
-        
+        if(this.isStudentAdded === true) {
+            this.props.navigation.navigate('Profile');
+        } else {
+            alert('Add atleast one student')
+        }
     }
 
     render() {

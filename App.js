@@ -7,6 +7,7 @@ import { createStackNavigator, DrawerNavigator, DrawerItems } from 'react-naviga
 import LoginScreen from './Screens/LoginScreen';
 import DashboardScreen from './Screens/DashboardScreen';
 import RegisterScreen from './Screens/RegisterScreen';
+import CreateProfile from './Screens/CreateProfile';
 
 const DrawerStack = DrawerNavigator({
   Dashboard: { screen: DashboardScreen }
@@ -27,6 +28,7 @@ const DrawerNavigation = createStackNavigator({
 const LoginStack = createStackNavigator({
   Register: { screen: RegisterScreen },
   Login: { screen: LoginScreen },
+  Profile: {screen: CreateProfile}
 },{
   initialRouteName: 'Login',
   headerMode: 'none'
