@@ -17,7 +17,9 @@ class RegisterScreen extends Component {
         this.textInput02 = React.createRef();
         this.textInput03 = React.createRef();
 
-        AsyncStorage.setItem('firstTime', 'false')
+        this.state = {email: this.props.navigation.getParam('email')}
+
+        // const userEmail = navigation.getParam('email');
 
         this.addMoreStudents = this.addMoreStudents.bind(this);
         this.finishAddingStudents = this.finishAddingStudents.bind(this);
@@ -33,7 +35,7 @@ class RegisterScreen extends Component {
         this.textInput03.current._root.clear();
         
         if(this.firstName !== '' && this.lastName !== '' && this.grade !== '') {
-            api.addStudents(this.firstName, this.lastName, this.grade,(message) => {
+            api.addStudents(this.firstName, this.lastName, this.grade,this.state.email,(message) => {
                 this.isStudentAdded = true;
                 alert(message);
             })
@@ -44,7 +46,7 @@ class RegisterScreen extends Component {
 
     finishAddingStudents() {
         if(this.isStudentAdded === true) {
-            this.props.navigation.navigate('Profile');
+            this.props.navigation.navigate('DrawerStack');
         } else {
             alert('Add atleast one student')
         }

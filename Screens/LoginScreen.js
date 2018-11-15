@@ -36,7 +36,7 @@ class LoginScreen extends Component {
               if (response !== 'true' && response !== null) {
                 this.props.navigation.navigate('DrawerStack');
               } else {
-                this.props.navigation.navigate('Register');
+                this.props.navigation.navigate('Profile');
               }
             }).catch(err => { console.error(err) })
         }
@@ -58,7 +58,7 @@ class LoginScreen extends Component {
                   if (response !== 'true' && response !== null) {
                     this.props.navigation.navigate('DrawerStack');
                   } else {
-                    this.props.navigation.navigate('Register');
+                    this.props.navigation.navigate('Profile');
                   }
                 }).catch(err => { console.error(err) })
             })
@@ -80,7 +80,7 @@ class LoginScreen extends Component {
                   if (response !== 'true' && response !== null) {
                     this.props.navigation.navigate('DrawerStack');
                   } else {
-                    this.props.navigation.navigate('Register');
+                    this.props.navigation.navigate('Profile');
                   }
                 }).catch(err => { console.error(err) })
             })
