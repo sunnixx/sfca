@@ -1,0 +1,7 @@
+- RNAK will generate a random token based on which we're maintaining the login 
+- The problem is what if the user logs out and then signs back in, the token generated will be different
+- How will we track which user signed in based on a random token ?
+
+SOLUTION:
+- Either store mobile no or email address of the user ! 
+- Based on which you can get their information from DB

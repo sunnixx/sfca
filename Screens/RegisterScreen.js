@@ -46,7 +46,7 @@ class RegisterScreen extends Component {
 
     finishAddingStudents() {
         if(this.isStudentAdded === true) {
-            this.props.navigation.navigate('DrawerStack');
+            this.props.navigation.navigate('DrawerStack',{email:this.state.email});
         } else {
             alert('Add atleast one student')
         }
