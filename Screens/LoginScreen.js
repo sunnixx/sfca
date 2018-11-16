@@ -16,7 +16,7 @@ class LoginScreen extends Component {
       responseType: 'code',
       defaultCountry: 'PK',
       initialEmail: 'sumair.hamza@gmail.com',
-      initialPhoneNumber: '+923'
+      initialPhoneNumber: '+923312514211'
     });
   }
 
@@ -72,20 +72,22 @@ class LoginScreen extends Component {
         if (!token) {
           console.log('Login Cancelled')
         } else {
-          AsyncStorage.setItem('token', token)
+          // console.log(token);
+          AsyncStorage.setItem('token', JSON.stringify(token))
             .then(() => {
-              // console.log("Load Dashboard");
+              // console.log(token);
               AsyncStorage.getItem('firstTime')
                 .then(response => {
+                  // console.log(response);
                   if (response !== 'true' && response !== null) {
                     this.props.navigation.navigate('DrawerStack');
                   } else {
                     this.props.navigation.navigate('Profile');
                   }
-                }).catch(err => { console.error(err) })
-            })
+                }).catch(err => { console.error('Error for firstTime' + err) })
+            }).catch(err => console.log('error for token' + err)) 
         }
-      })
+      }).catch(err => console.log('Account Kit Error' + err))
   }
 
   render() {

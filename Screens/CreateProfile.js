@@ -23,15 +23,19 @@ class CreateProfile extends Component {
     }
 
     handleAlreadyAccount() {
-        api.existingAccount(this.alreadyEmail,(status,user) => {
-            if(status !== true) {
-                //User doesn't exist
-                alert("This email isn't registered with us, create a new user by going back!")
-            } else {
-                //User exists
-                this.props.navigation.navigate('DrawerStack',{user})
-            }
-        })
+        if(this.alreadyAccount !== '') {
+            api.existingAccount(this.alreadyEmail,(status,user) => {
+                if(status !== true) {
+                    //User doesn't exist
+                    alert("This email isn't registered with us, create a new user by going back!")
+                } else {
+                    //User exists
+                    this.props.navigation.navigate('DrawerStack',{user})
+                }
+            })
+        } else {
+            alert("Fields can't be empty")
+        }
     }
 
     handleAccount() {
@@ -64,12 +68,15 @@ class CreateProfile extends Component {
     handleSubmit() {
         if (this.name !== '' && this.email !== '') {
             api.addParent(this.name, this.email, this.state.selected, (message,status) => {
+                console.log(message);
                 if(status !== true) {
                     alert(message);
                 } else {
                     this.props.navigation.navigate('Register',{email:this.email}); //Jump to Student registration page
                 }
             })
+        } else {
+            alert("Fields can't be empty")
         }
     }
 

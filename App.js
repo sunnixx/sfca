@@ -30,7 +30,7 @@ const LoginStack = createStackNavigator({
   Login: { screen: LoginScreen },
   Profile: {screen: CreateProfile}
 },{
-  initialRouteName: 'Profile',
+  initialRouteName: 'Login',
   headerMode: 'none'
 })
 
